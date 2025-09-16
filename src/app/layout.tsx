@@ -1,3 +1,4 @@
+import { roboto } from '@/styles/font';
 import '@/styles/globals.css';
 
 export default function RootLayout({
@@ -7,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased ${roboto.className}`}>{children}</body>
     </html>
   );
 }
