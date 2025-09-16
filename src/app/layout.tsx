@@ -1,3 +1,5 @@
+import Footer from '@/components/layouts/footer';
+import Header from '@/components/layouts/header';
 import { APP_DESCRIPTION, APP_NAME } from '@/constants';
 import { roboto } from '@/styles/font';
 import '@/styles/globals.css';
@@ -18,7 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${roboto.className}`}>{children}</body>
+      <body className={`antialiased ${roboto.className}`}>
+        <div className="flex flex-col h-screen">
+          <Header />
+          <main className="flex-1 overflow-y-auto p-4">{children}</main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
