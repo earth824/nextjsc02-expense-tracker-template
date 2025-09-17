@@ -1,6 +1,8 @@
 import ExampleImage from '@/components/home/example-image';
 import { Button } from '@/components/ui/button';
+import { ROUTE } from '@/config/route.config';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Shark Tracker No.1 Expense Manager'
@@ -18,7 +20,9 @@ export default function Home() {
           visualized categories such as Expense: Food, Shopping or Income:
           Salary, Investment.
         </p>
-        <Button className="self-start">Start for free</Button>
+        <Button asChild className="self-start">
+          <Link href={ROUTE.SIGNIN}>Start for free</Link>
+        </Button>
       </div>
       <div className="w-3/5">
         <ExampleImage />
