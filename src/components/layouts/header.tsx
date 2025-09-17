@@ -1,10 +1,11 @@
+import UserMenu from '@/components/layouts/user-menu';
 import { APP_NAME } from '@/constants';
 import { fredoka } from '@/styles/font';
 import Image from 'next/image';
 
 export default function Header() {
   return (
-    <header className="px-4 py-2 sticky border-b">
+    <header className="px-4 py-2 sticky border-b flex justify-between items-center">
       <div className="flex gap-2 items-center">
         <Image
           src="/logo.png"
@@ -15,6 +16,9 @@ export default function Header() {
         <h3 className={`${fredoka.className} text-primary text-2xl font-bold`}>
           {APP_NAME}
         </h3>
+      </div>
+      <div>
+        <UserMenu />
       </div>
     </header>
   );
