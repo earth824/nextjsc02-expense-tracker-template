@@ -1,4 +1,5 @@
 import AuthCard from '@/components/auth/auth-card';
+import SignInForm from '@/components/auth/signin-form';
 import { ROUTE } from '@/config/route.config';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -13,11 +14,12 @@ export default function SignInPage() {
       title="Sign in to your account"
       description="Enter your credentials to access to your account"
     >
+      <SignInForm />
       <div className="text-center text-sm mt-4">
         Don&apos;t have an account?{' '}
         <Link
           href={ROUTE.SIGNUP}
-          className="hover:underline text-primary font-medium"
+          className="hover:underline underline-offset-4 text-primary font-medium"
         >
           Sign Up
         </Link>
