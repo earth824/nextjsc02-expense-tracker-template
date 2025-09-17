@@ -1,3 +1,4 @@
+import ThemeToggle from '@/components/layouts/theme-toggle';
 import UserMenu from '@/components/layouts/user-menu';
 import { APP_NAME } from '@/constants';
 import { fredoka } from '@/styles/font';
@@ -17,7 +18,8 @@ export default function Header() {
           {APP_NAME}
         </h3>
       </div>
-      <div>
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
         <UserMenu />
       </div>
     </header>
