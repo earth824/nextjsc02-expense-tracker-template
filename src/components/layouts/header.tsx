@@ -9,7 +9,7 @@ export default function Header() {
     <header className="px-4 py-2 sticky border-b flex justify-between items-center">
       <div className="flex gap-2 items-center">
         <Image
-          src="/logo.png"
+          src="/images/logo.png"
           alt={`${APP_NAME} logo`}
           width={40}
           height={40}
