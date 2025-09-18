@@ -12,23 +12,20 @@ import Link from 'next/link';
 export default function TransactionItemAction() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="focus-visible:ring-0">
-        <Button variant="ghost">
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="focus-visible:ring-0">
           <EllipsisVertical />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-32">
+      <DropdownMenuContent align="end" className="w-20">
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link href={ROUTE.DUPLICATE_TRANSACTION('uuid')}>Duplicate</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link href={ROUTE.EDIT_TRANSACTION('uuid')}>Edit</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          asChild
-          className="cursor-pointer focus-visible:ring-0 h-auto w-full font-normal justify-start"
-        >
-          <Button variant="ghost">Delete</Button>
+        <DropdownMenuItem asChild className="cursor-pointer w-full">
+          <button>Delete</button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
