@@ -1,9 +1,11 @@
 import SearchButton from '@/components/layouts/search-button';
 import ThemeToggle from '@/components/layouts/theme-toggle';
 import UserMenu from '@/components/layouts/user-menu';
+import { Button } from '@/components/ui/button';
 import { ROUTE } from '@/config/route.config';
 import { APP_NAME } from '@/constants';
 import { fredoka } from '@/styles/font';
+import { ClipboardList, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,6 +28,16 @@ export default function Header() {
         </div>
       </Link>
       <div className="flex items-center gap-2">
+        <Button variant="ghost" asChild>
+          <Link href={ROUTE.TRANSACTION}>
+            <ClipboardList />
+          </Link>
+        </Button>
+        <Button variant="ghost" asChild>
+          <Link href={ROUTE.CREATE_TRANSACTION}>
+            <Plus />
+          </Link>
+        </Button>
         <SearchButton />
         <ThemeToggle />
         <UserMenu />
