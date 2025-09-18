@@ -1,3 +1,4 @@
+import PaginationControl from '@/components/shared/pagination-control';
 import TransactionItem from '@/components/transaction/transaction-item';
 import { Button } from '@/components/ui/button';
 import { ROUTE } from '@/config/route.config';
@@ -22,12 +23,15 @@ export default function TransactionList() {
   // );
 
   return (
-    <div>
-      <TransactionItem />
-      <TransactionItem />
-      <TransactionItem />
-      <TransactionItem />
-      <TransactionItem />
-    </div>
+    <>
+      <div>
+        <TransactionItem />
+        <TransactionItem />
+        <TransactionItem />
+        <TransactionItem />
+        <TransactionItem />
+      </div>
+      <PaginationControl />
+    </>
   );
 }
