@@ -1,3 +1,4 @@
+import SearchButton from '@/components/layouts/search-button';
 import ThemeToggle from '@/components/layouts/theme-toggle';
 import UserMenu from '@/components/layouts/user-menu';
 import { ROUTE } from '@/config/route.config';
@@ -25,6 +26,7 @@ export default function Header() {
         </div>
       </Link>
       <div className="flex items-center gap-2">
+        <SearchButton />
         <ThemeToggle />
         <UserMenu />
       </div>
