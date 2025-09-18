@@ -19,7 +19,9 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { ROUTE } from '@/config/route.config';
 import { TRANSACTION_TYPE } from '@/config/transaction.config';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 export default function TransactionForm() {
@@ -147,6 +149,13 @@ export default function TransactionForm() {
             </FormItem>
           )}
         />
+
+        <div className="col-span-2 flex gap-6">
+          <Button className="w-30">Create</Button>
+          <Button variant="outline" className="w-30" asChild>
+            <Link href={ROUTE.TRANSACTION}>Cancel</Link>
+          </Button>
+        </div>
       </form>
     </Form>
   );
