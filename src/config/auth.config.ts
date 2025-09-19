@@ -2,7 +2,13 @@ import { findUserByEmail } from '@/lib/datas/user.data';
 import { signInSchema } from '@/lib/schemas/auth.schema';
 import type { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
+import {
+  GUEST_ONLY_ROUTES,
+  PROTECTED_ROUTES,
+  ROUTE
+} from '@/config/route.config';
+import { NextResponse } from 'next/server';
 
 export const authConfig = {
   providers: [
@@ -22,5 +28,15 @@ export const authConfig = {
         return user;
       }
     })
-  ]
+  ],
+  callbacks: {
+    authorized({ auth, request }) {
+      const nextPathname = request.nextUrl.pathname;
+      if (PROTECTED_ROUTES.some(route => route.test(nextPathname) && !auth))
+        return false;
+      if (GUEST_ONLY_ROUTES.some(route => route.test(nextPathname) && auth))
+        return NextResponse.redirect(new URL(ROUTE.TRANSACTION, request.url));
+      return true;
+    }
+  }
 } satisfies NextAuthConfig;

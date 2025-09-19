@@ -6,7 +6,7 @@ import { signUpSchema } from '@/lib/schemas/auth.schema';
 import { validateSchema } from '@/lib/utils';
 import { ActionResult } from '@/types/action-result.type';
 import { redirect } from 'next/navigation';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { signIn } from '@/lib/auth';
 import { CredentialsSignin } from 'next-auth';
 
