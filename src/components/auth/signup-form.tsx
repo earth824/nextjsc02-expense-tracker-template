@@ -16,6 +16,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpSchema } from '@/lib/schemas/auth.schema';
 import { useTransition } from 'react';
 import { Loader } from 'lucide-react';
+import { signUpWithCredentials } from '@/lib/actions/auth.action';
+import { toast } from 'sonner';
 
 export default function SignUpForm() {
   const form = useForm<SignUpInput>({
@@ -26,7 +28,12 @@ export default function SignUpForm() {
   const [isPending, startTransition] = useTransition();
 
   const onSubmit: SubmitHandler<SignUpInput> = data => {
-    startTransition(async () => {});
+    startTransition(async () => {
+      const { success } = await signUpWithCredentials(data);
+      if (!success) {
+        toast.error('Something went wrong');
+      }
+    });
   };
 
   return (
@@ -84,7 +91,11 @@ export default function SignUpForm() {
             <FormItem>
               <FormLabel className="text-xs">Password</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your password" {...field} />
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>

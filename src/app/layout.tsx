@@ -1,5 +1,6 @@
 import Footer from '@/components/layouts/footer';
 import Header from '@/components/layouts/header';
+import { Toaster } from '@/components/ui/sonner';
 import { THEME } from '@/config/theme.config';
 import { APP_DESCRIPTION, APP_NAME } from '@/constants';
 import { roboto } from '@/styles/font';
@@ -34,6 +35,7 @@ export default function RootLayout({
             <main className="flex-1 overflow-y-auto p-4">{children}</main>
             <Footer />
           </div>
+          <Toaster position="bottom-right" richColors />
         </ThemeProvider>
       </body>
     </html>
