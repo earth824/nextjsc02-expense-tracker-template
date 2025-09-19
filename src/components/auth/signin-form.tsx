@@ -10,17 +10,47 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form';
+import { ROUTE } from '@/config/route.config';
+import { signInWithCredentials } from '@/lib/actions/auth.action';
+import { signInSchema } from '@/lib/schemas/auth.schema';
+import { SignInInput } from '@/types/auth.type';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export default function SignInForm() {
-  const form = useForm();
+  const form = useForm<SignInInput>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: { email: '', password: '' }
+  });
+
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<SignInInput> = data => {
+    startTransition(async () => {
+      const { success, message } = await signInWithCredentials(data);
+      if (success) {
+        toast.success('Signed in successfully');
+        router.push(ROUTE.TRANSACTION);
+      } else {
+        toast.error(message);
+      }
+    });
+  };
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-6">
+      <form
+        className="flex flex-col gap-6"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <FormField
           control={form.control}
-          name=""
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-xs">Email</FormLabel>
@@ -34,7 +64,7 @@ export default function SignInForm() {
 
         <FormField
           control={form.control}
-          name=""
+          name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-xs">Password</FormLabel>
@@ -50,7 +80,15 @@ export default function SignInForm() {
           )}
         />
 
-        <Button>Sign In</Button>
+        <Button disabled={isPending}>
+          {isPending ? (
+            <>
+              <Loader className="animate-spin" /> Signing you in...
+            </>
+          ) : (
+            'Sign In'
+          )}
+        </Button>
       </form>
     </Form>
   );

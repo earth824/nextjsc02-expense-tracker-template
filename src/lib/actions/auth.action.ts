@@ -7,6 +7,8 @@ import { validateSchema } from '@/lib/utils';
 import { ActionResult } from '@/types/action-result.type';
 import { redirect } from 'next/navigation';
 import * as bcrypt from 'bcrypt';
+import { signIn } from '@/lib/auth';
+import { CredentialsSignin } from 'next-auth';
 
 export async function signUpWithCredentials(
   input: unknown
@@ -26,4 +28,19 @@ export async function signUpWithCredentials(
     return { success: false, message: 'Unexpected error occured' };
   }
   redirect(ROUTE.SIGNIN);
+}
+
+export async function signInWithCredentials(
+  input: Record<string, any>
+): Promise<ActionResult> {
+  try {
+    input.redirect = false;
+    await signIn('credentials', input);
+    return { success: true };
+  } catch (error) {
+    if (error instanceof CredentialsSignin) {
+      return { success: false, message: 'Invalid credentials' };
+    }
+    return { success: false, message: 'Unexpected error occured' };
+  }
 }

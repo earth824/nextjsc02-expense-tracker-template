@@ -11,3 +11,8 @@ export const signUpSchema = z.object({
       'Password must have at least 6 characters and contains only letter and number'
     )
 });
+
+export const signInSchema = z.object({
+  email: z.string().min(1, 'Email is required'),
+  password: z.string().min(1, 'Password is required')
+});
