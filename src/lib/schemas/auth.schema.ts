@@ -1,0 +1,13 @@
+import { z } from 'zod';
+
+export const signUpSchema = z.object({
+  firstName: z.string().min(1, 'First name is required').trim(),
+  lastName: z.string().min(1, 'Last name is required').trim(),
+  email: z.email('Invalid email address'),
+  password: z
+    .string()
+    .regex(
+      /^[a-zA-Z0-9]{6,}$/,
+      'Password must have at least 6 characters and contains only letter and number'
+    )
+});
