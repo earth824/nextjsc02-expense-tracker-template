@@ -1,0 +1,38 @@
+import SignUpForm from '@/components/auth/signup-form';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+import { ROUTE } from '@/config/route.config';
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Sign Up'
+};
+
+export default function SignUpPage() {
+  return (
+    <Card className="w-full sm:max-w-lg">
+      <CardHeader>
+        <CardTitle className="text-2xl">Create new account</CardTitle>
+        <CardDescription>Get Started - It's free</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <SignUpForm />
+        <div className="text-center text-sm mt-4">
+          Already have an account?{' '}
+          <Link
+            href={ROUTE.SIGNIN}
+            className="hover:underline underline-offset-4 text-primary font-medium"
+          >
+            Sign In
+          </Link>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
