@@ -31,13 +31,13 @@ export const authConfig = {
     })
   ],
   callbacks: {
-    authorized({ auth, request }) {
-      const nextPathname = request.nextUrl.pathname;
-      if (PROTECTED_ROUTES.some(route => route.test(nextPathname) && !auth))
-        return false;
-      if (GUEST_ONLY_ROUTES.some(route => route.test(nextPathname) && auth))
-        return NextResponse.redirect(new URL(ROUTE.TRANSACTION, request.url));
-      return true;
-    }
+    // authorized({ auth, request }) {
+    //   const nextPathname = request.nextUrl.pathname;
+    //   if (PROTECTED_ROUTES.some(route => route.test(nextPathname) && !auth))
+    //     return false;
+    //   if (GUEST_ONLY_ROUTES.some(route => route.test(nextPathname) && auth))
+    //     return NextResponse.redirect(new URL(ROUTE.TRANSACTION, request.url));
+    //   return true;
+    // }
   }
 } satisfies NextAuthConfig;
